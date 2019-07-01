@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<tx:annotation-driven transaction-manager="txManager"/>
+<!-- 		하단에 <bean id="txManager"의 id값이 transaction manager면 안 써도 됨 -->
+<!-- 이제 buyservice2로 가서 트랜잭션이 필요한 메서드 위에 명시 -->
+	
+	<context:component-scan base-package="kh.spring"></context:component-scan>
+	
+	
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<mvc:resources location="/resources/" mapping="/resources/**" />
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="kh"/>
+		<property name="password" value="kh"/>
+<!-- 		<property name="defaultAutoCommit" value="false"/> -->
+	</bean>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+<!-- 		트랜젝션 작업에 관한 이슈를 다룸 // 리졸버가 아니기 때문에 자동으로 하진 않고 처리해 줘야 함 -->
+	</bean>
+
+</beans>

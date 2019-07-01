@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:component-scan base-package="kh.spring"></context:component-scan>
+
+<!-- 	//핸들러 매퍼를 생성 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<!-- 		//컨스트럭터, 세터 중 한 가지 방법으로 넣음 -->
+		<property name="mappings">
+			<props>
+				<prop key="/">index</prop>
+				<prop key="/inputForm.do">inputForm</prop>
+				<!-- inputForm.do로 들어온다면, inputForm 컨트롤러로 보내라 -->
+				<prop key="/inputProc.do">inputProc</prop>
+				<prop key="/outputProc.do">outputProc</prop>
+			</props>
+		</property>
+	</bean>
+
+	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+	<mvc:resources location="/resources/image" mapping="/image/**"></mvc:resources>
+	<mvc:resources location="/resources/css" mapping="/css/**"></mvc:resources>
+
+	<bean id="index" class="kh.spring.practice.IndexController"></bean>
+	<bean id="inputForm" class="kh.spring.practice.InputFormController"></bean>
+	<bean id="inputProc" class="kh.spring.practice.inputProcController"></bean>
+	<bean id="outputProc" class="kh.spring.practice.OutputProcController"></bean>
+	
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="kh"/>
+		<property name="password" value="kh"/>
+		<property name="defaultAutoCommit" value="false"/>
+	</bean>
+
+</beans>

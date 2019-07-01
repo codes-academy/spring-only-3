@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="myBatis.message-mapper"> -->
+
+	
+<mapper namespace="MessageDAO">
+	<insert id="insert">
+		insert into message values(message_seq.nextval, #{name}, #{message})
+		<!-- 이렇게 쓰면 getname을 호출함 / dto의 필드 이름임 -->
+		<!-- 만약 dto가 아닌 string을 받으면, 그 string에 어노테이션 붙이면 됨 -->
+		<!-- ;찍으면 에러남 -->
+	</insert>
+	
+<!-- 		${name}으로 쓰이는 경우  -->
+<!-- 		#{} = preparedStatement (''이 자동으로 붙음) -->
+<!-- 		${} = statement (''이 붙지 않음) -->
+
+	<insert id="delete">
+		delete from message where seq=#{value}
+<!-- 		객체타입이 아닌 단순 값일때는 #{value} -->
+	</insert>
+	
+	<select id="selectList" resultType="kh.spring.dto.MessageDTO">
+		select * from message
+<!-- 		데이터를 list에 담아주는 것 까진 mybatis가 하지만, 무슨 타입으로 반환해야 할지 모르기 때문에 결과값에 대한 매핑정보를 지정해 줘야 함  -->
+	</select>
+	
+<!-- 	<select id="selectBySeq" resultType="kh.spring.dto.MessageDTO"> -->
+<!-- 		select * from message where seq=#{value} -->
+<!-- 	</select> -->
+	
+	<resultMap type="kh.spring.dto.TempDTO" id="TempDTO">
+		<result property="num" column="seq"/>
+		<result property="id" column="name"/>
+		<result property="contents" column="message"/>
+	</resultMap>
+	
+	<select id="selectBySeq" resultMap="TempDTO">
+		select * from message where seq=#{value}
+	</select>
+	
+	
+	<select id="update">
+		update message set name=#{name}, message=#{message} where seq=#{seq}
+	</select>
+</mapper>

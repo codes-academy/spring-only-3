@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 	jndi(connection pool)와는 다른 문법으로 기재 -->
+<!-- 	<bean id="lg" class="kh.spring.impl.LgTv"></bean> -->
+<!-- 	<bean id="sam" class="kh.spring.impl.SamsungTv"></bean> -->
+	<!-- 	bean은 클래스를 뜻함 / 자료형 명시해야 함 / class에 sam까지 치고 ctrl + space하면 자동으로 찾아짐-->
+	<!-- 이 인스턴스는 스프링 컨테이너가 제어함 -->
+	
+	
+<!-- 	<bean id="sony" class="kh.spring.impl.SonySpeaker"></bean> -->
+
+<!-- 	스프링에게 단순히 인스턴스를 만들라고 시키는 것만이 아니라, 초기값을 세팅할 수도 있음 -->
+<!-- 	<bean id="sam" class="kh.spring.impl.SamsungTv"> -->
+	<!-- 생성자, setter를 사용해 넣는 2가지 방식이 있음 -->
+		<!-- 스피커는 인스턴스가 없으므로 잠깐 빼놓음 / 순서대로 모델, 가격, 파워-->
+<!-- 		<constructor-arg ref="sony"></constructor-arg>  -->
+			<!-- String, int등은 기본형으로 침 / 참조자료형은 reference라고 함 / ref=id값을 삽입-->
+<!-- 		<constructor-arg value="sams-1000"></constructor-arg>  -->
+<!-- 		<constructor-arg value="1000"></constructor-arg> -->
+<!-- 		<constructor-arg value="false"></constructor-arg> -->
+<!-- 	</bean> -->
+	<!-- dl : 이 상황을 dependency injection이라고 함(특정 클래스를 만들 때 그 클래스가 필요로 하는 클래스를 문서상에서 넣어주는 것) <-> dl : 찾는 것-->
+	
+	
+<!-- 위 코드를 britzSpeaker로 바꾸기 -->
+<!-- 	<bean id="bri" class="kh.spring.impl.BritzSpeaker"></bean> -->
+
+<!-- 	<bean id="sam" class="kh.spring.impl.SamsungTv"> -->
+<!-- 		<constructor-arg value="sams-1000"></constructor-arg>  -->
+<!-- 		<constructor-arg value="1000"></constructor-arg> -->
+<!-- 		<constructor-arg value="false"></constructor-arg> -->
+<!-- 		<constructor-arg ref="bri"></constructor-arg>  -->
+<!-- 	</bean> -->
+	
+<!-- 	<bean id="sam2" class="kh.spring.impl.SamsungTv"> -->
+<!-- 		<constructor-arg value="sams-1000"></constructor-arg>  -->
+<!-- 		<constructor-arg value="1000"></constructor-arg> -->
+<!-- 		<constructor-arg value="false"></constructor-arg> -->
+<!-- 		<constructor-arg ref="sony"></constructor-arg>  -->
+<!-- 	</bean> -->
+	
+	
+<!-- 	우리가 만든 자료형을 bean으로 만든 상황 : 내 마음대로 수정 가능 -->
+<!-- 	다른 사람이 만든 자료형을 bean으로 만든 상황 : 수정해서 다시 컴파일한 다음 쓸 수는 없음, 규칙에 맞추어 써야 함 -> 값을 채워주는 여러가지 방법을 알아야 함(생성자, setter, bean, list, hashMap, hashSet...) -->
+	
+	
+	<!-- setter를 통한 삽입 -->
+<!-- 	<bean id="sam" class="kh.spring.impl.SamsungTv"> -->
+		<!-- name에는 필드 이름 -->
+<!-- 		<property name="speaker" ref="sony"></property> -->
+<!-- 		<property name="speaker" ref="sony"/> : 간편형-->
+			<!-- setter는 하나만 쓴다고 해서 에러가 나지 않음 / 그러나 samsung 클래스에 setter가 구현되어 있어야 함-->
+<!-- 		<property name="model" value="sams-1000" />	 -->
+<!-- 		<property name="price" value="1000" />	 -->
+<!-- 		<property name="power" value="false" />	 -->
+<!-- 	</bean> -->
+
+
+<!-- Fruits -->
+<!-- 	<bean id="fruits" class="kh.spring.impl.Fruits"> -->
+<!-- 		<constructor-arg> -->
+<!-- 			<list> -->
+<!-- 				<value>Apple</value> -->
+<!-- 				<value>Orange</value> -->
+<!-- 				<value>Mango</value> -->
+<!-- 			</list> -->
+<!-- 		</constructor-arg>	 -->
+<!-- 		<constructor-arg> -->
+<!-- 			<set> -->
+<!-- 				<value>Abocado</value> -->
+<!-- 				<value>Banana</value> -->
+<!-- 				<value>Strawberry</value> -->
+<!-- 			</set> -->
+<!-- 		</constructor-arg> -->
+<!-- 		<constructor-arg> -->
+<!-- 			<map> -->
+<!-- 				<entry key="Grape" value="10"> -->
+ 			<!-- 포도는 10개 있다 --> 
+<!-- 				</entry> -->
+<!-- 				<entry> -->
+<!-- 					<key><value>Pineapple</value></key> -->
+<!-- 					<value>4</value> -->
+<!-- 				</entry> -->
+<!-- 				<entry> -->
+<!-- 					<key><value>Melon</value></key> -->
+<!-- 					<value>7</value> -->
+<!-- 				</entry> -->
+<!-- 			</map> -->
+<!-- 		</constructor-arg> -->
+<!-- 	</bean> -->
+	
+	<!-- setter로 불러오기 -->
+<!-- 	<bean id="fruits" class="kh.spring.impl.Fruits"> -->
+<!-- 		<property name="namesList"> -->
+<!-- 			<list> -->
+<!-- 				<value>Apple</value> -->
+<!-- 				<value>Orange</value> -->
+<!-- 				<value>Mango</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 		<property name="namesMap"> -->
+<!-- 			<map> -->
+<!-- 				<entry key="Grape" value="10"/> -->
+<!-- 				<entry key="Pineapple" value="7"/> -->
+<!-- 				<entry key="Melon" value="4"/> -->
+<!-- 			</map> -->
+<!-- 		</property> -->
+<!-- 		<property name="namesSet"> -->
+<!-- 			<set>  -->
+<!-- 				<value>Abocado</value> -->
+<!-- 				<value>Banana</value> -->
+<!-- 				<value>Strawberry</value> -->
+<!-- 			</set> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+	
+	
+		<!-- lazy-init="false" 디폴트가 false / spring 컨테이너 가동과 동시에 만들어짐 -->
+		<!-- true면 초기화가 게으르게 일어난다 : 초기화가 컨테이너 가동될 때가 아닌 getBean을 할 때 만들어짐 -->
+<!-- 	<bean class="kh.spring.impl.SamsungTv" lazy-init="true"/> -->
+
+
+
+	<!-- 	스코프 : 하나냐, 부를 때 마다 생성되는 것이냐 -->
+	<!-- 	getBean을 하고 그 아래 또 getBean을 했을 때, 같은 sam이 나온 것이냐, 다른 sam이 나온 것이냐의 문제 -->
+	<!-- 	디폴트는 singleton -->
+	<bean class="kh.spring.impl.SamsungTv" scope="singleton"/>
+	<!-- 	prototype : getBean할 때마다 새로운 것을 생성함 -->
+<!-- 	<bean class="kh.spring.impl.SamsungTv" scope="prototype"/> -->
+	
+</beans>
