@@ -1,0 +1,54 @@
+<<<<<<< HEAD
+<tr>
+				<td class="menu" width=25%>*프로필사진 :
+				<td><input type=file name="image" id="imageInp">
+			</tr>
+
+			<tr>
+				<td class="menu" width=25%>*선택된 사진 :
+				<td><img id="newImg" src="#" alt="프로필 이미지 미설정" />
+			</tr>
+
+
+
+
+function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$('#newImg').attr('src', e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		$("#imageInp").change(function() {
+			readURL(this);
+=======
+<tr>
+				<td class="menu" width=25%>*프로필사진 :
+				<td><input type=file name="image" id="imageInp">
+			</tr>
+
+			<tr>
+				<td class="menu" width=25%>*선택된 사진 :
+				<td><img id="newImg" src="#" alt="프로필 이미지 미설정" />
+			</tr>
+
+
+
+
+function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$('#newImg').attr('src', e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		$("#imageInp").change(function() {
+			readURL(this);
+>>>>>>> 57ce8e58b60abce0f66fd8bea0447d4346804a95
+		});
