@@ -1,1 +1,1 @@
-# SpringOnly3
+# spring-only-3
