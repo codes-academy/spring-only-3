@@ -8,14 +8,14 @@ import kh.spring.dao.SellerDAO;
 import kh.spring.dto.SellerDTO;
 
 @Component
-public class SellerDAOImpl implements SellerDAO{
+public class SellerDAOImpl implements SellerDAO {
 
-	@Autowired
-	private JdbcTemplate template;
-	
-	public int insert(SellerDTO dto) throws Exception{
-		String sql = "insert into seller values(seller_seq.nextval, ?, ?)";
-		return template.update(sql, new Object[] {dto.getBid(), dto.getPid()});
-	}
-	
+  @Autowired
+  private JdbcTemplate template;
+
+  public int insert(SellerDTO dto) throws Exception {
+    String sql = "insert into seller values(seller_seq.nextval, ?, ?)";
+    return template.update(sql, new Object[]{dto.getBid(), dto.getPid()});
+  }
+
 }

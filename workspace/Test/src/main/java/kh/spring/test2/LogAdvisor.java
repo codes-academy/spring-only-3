@@ -16,14 +16,15 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class LogAdvisor {
 
-@Pointcut("execution(* kh.spring.test2.MembersDAO.*(..))")
-public void printLog() {}
+  @Pointcut("execution(* kh.spring.test2.MembersDAO.*(..))")
+  public void printLog() {
+  }
 
-@Before("printLog()")
-public void before(JoinPoint jp) {
-	Signature p = jp.getSignature();
-	String methodName = p.getName();
-	System.out.println(methodName);
-	}
+  @Before("printLog()")
+  public void before(JoinPoint jp) {
+    Signature p = jp.getSignature();
+    String methodName = p.getName();
+    System.out.println(methodName);
+  }
 
 }

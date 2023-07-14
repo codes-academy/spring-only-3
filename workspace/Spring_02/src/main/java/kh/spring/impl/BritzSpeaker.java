@@ -5,11 +5,11 @@ import org.springframework.stereotype.Component;
 import kh.spring.interfaces.Speaker;
 
 @Component("bri")
-public class BritzSpeaker implements Speaker{
+public class BritzSpeaker implements Speaker {
 
-	@Override
-	public void volumeUp() {
-		System.out.println("ºê¸®Ã÷ : º¼·ý¾÷");
-	}
+  @Override
+  public void volumeUp() {
+    System.out.println("ºê¸®Ã÷ : º¼·ý¾÷");
+  }
 
 }

@@ -12,7 +12,7 @@ import kh.spring.dto.PayDTO;
 
 @Component
 public class PayDAO {
-	
+
 //	public int insert(Connection con, PayDTO dto) throws Exception{
 //		String sql = "insert into pay values(pay_seq.nextval, ?, ?)";
 //		try(

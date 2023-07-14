@@ -16,28 +16,28 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class HomeController {
 
-	@Autowired
-	private HttpSession session;
+  @Autowired
+  private HttpSession session;
 
-	@RequestMapping("/")
-	public String home(Locale locale, Model model) {
-		return "home";
-	}
+  @RequestMapping("/")
+  public String home(Locale locale, Model model) {
+    return "home";
+  }
 
-	@RequestMapping("upload.do")
-	public String uploadProc(String name, MultipartFile image) {
-		String resourcePath = 
-				session.getServletContext().getRealPath("/resources");
-		System.out.println(resourcePath);
+  @RequestMapping("upload.do")
+  public String uploadProc(String name, MultipartFile image) {
+    String resourcePath =
+      session.getServletContext().getRealPath("/resources");
+    System.out.println(resourcePath);
 
 //		commons-fileupload : 두 번째 방법
-		try {
-			FileUtils.writeByteArrayToFile(
-					new File(resourcePath+"/"+System.currentTimeMillis()+"_file.png"), 
-					image.getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+    try {
+      FileUtils.writeByteArrayToFile(
+        new File(resourcePath + "/" + System.currentTimeMillis() + "_file.png"),
+        image.getBytes());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 
 //                         commons-fileupload : 두 번째 방법
 //		try {
@@ -48,9 +48,7 @@ public class HomeController {
 //		}
 
 
-
-		
-//		String resourcePath = 
+//		String resourcePath =
 //				session.getServletContext().getRealPath("/resources");
 //		System.out.println(resourcePath);
 //		int maxSize = 10 * 1024 * 1024;
@@ -70,8 +68,8 @@ public class HomeController {
 //		}catch(Exception e) {
 //			e.printStackTrace();
 //		}
-		return "home";
-	}
+    return "home";
+  }
 }
 
 

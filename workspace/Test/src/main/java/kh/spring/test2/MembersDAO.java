@@ -6,16 +6,16 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class MembersDAO {
 
-public String isLoginAvailable(String email, String pw) {
-	return null;
-}
+  public String isLoginAvailable(String email, String pw) {
+    return null;
+  }
 
-public boolean isEmailExist(String email) {
-	return false;
-}
+  public boolean isEmailExist(String email) {
+    return false;
+  }
 
-public int memberOut(String email, String pw) {
-	return 1;
-}
+  public int memberOut(String email, String pw) {
+    return 1;
+  }
 
 }

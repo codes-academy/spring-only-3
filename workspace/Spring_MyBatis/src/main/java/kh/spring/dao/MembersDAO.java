@@ -12,16 +12,16 @@ import kh.spring.dto.MembersDTO;
 @Repository
 public class MembersDAO {
 
-	@Autowired
-	private SqlSessionTemplate sst;
-	
-	public int insert(MembersDTO dto) {
-		System.out.println(dto.getId() + dto.getName());
-		return sst.insert("MembersDAO.insert", dto);
-	}
-	
-	public List<MembersDTO> select(){
-		return sst.selectList("MembersDAO.selectList");
-	}
-	
+  @Autowired
+  private SqlSessionTemplate sst;
+
+  public int insert(MembersDTO dto) {
+    System.out.println(dto.getId() + dto.getName());
+    return sst.insert("MembersDAO.insert", dto);
+  }
+
+  public List<MembersDTO> select() {
+    return sst.selectList("MembersDAO.selectList");
+  }
+
 }

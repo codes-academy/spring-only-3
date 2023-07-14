@@ -9,14 +9,14 @@ import kh.spring.dto.SellerDTO;
 @Repository
 public class SellerDAO {
 
-	@Autowired
-	private SqlSessionTemplate sst;
-	
-	public int insert() {
-		SellerDTO dto = new SellerDTO();
-		dto.setBid("ggg");
-		dto.setPid("ggg");
-		return sst.insert("SellerDAO.insert", dto);
-	}
-	
+  @Autowired
+  private SqlSessionTemplate sst;
+
+  public int insert() {
+    SellerDTO dto = new SellerDTO();
+    dto.setBid("ggg");
+    dto.setPid("ggg");
+    return sst.insert("SellerDAO.insert", dto);
+  }
+
 }

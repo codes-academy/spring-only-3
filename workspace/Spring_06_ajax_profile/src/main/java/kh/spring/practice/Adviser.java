@@ -15,27 +15,26 @@ import kh.spring.dto.MembersDTO;
 @Component
 @Aspect
 public class Adviser {
-	
 
-	@Autowired
-	private HttpSession session;
-	
-	@Around("execution(* kh.spring.practice.HomeController.login(..))")
-	public Object loginCheck(ProceedingJoinPoint pjp) throws Throwable{
+
+  @Autowired
+  private HttpSession session;
+
+  @Around("execution(* kh.spring.practice.HomeController.login(..))")
+  public Object loginCheck(ProceedingJoinPoint pjp) throws Throwable {
 //		MembersDTO dto = (MembersDTO)session.getAttribute("loginInfo");
-		
-		if(session.getAttribute("id") == null) {
-			ModelAndView mav = new ModelAndView();
-			mav.addObject("msg", "로그인을 먼저 진행해주세요");
-			mav.setViewName("index");
-			return mav;
-		} else {
-			return pjp.proceed();
-		}
-	}
-	
-	
-	
+
+    if (session.getAttribute("id") == null) {
+      ModelAndView mav = new ModelAndView();
+      mav.addObject("msg", "로그인을 먼저 진행해주세요");
+      mav.setViewName("index");
+      return mav;
+    } else {
+      return pjp.proceed();
+    }
+  }
+
+
 //	@Around("execution(* kh.spring.practice.HomeController.*(..))")
 //	public Object perfCheck(ProceedingJoinPoint pjp) {
 //		long startTime = System.currentTimeMillis();
@@ -62,6 +61,6 @@ public class Adviser {
 //		
 ////		return retVal;
 //	}
-	
-	
+
+
 }

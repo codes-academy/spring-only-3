@@ -10,15 +10,15 @@ import kh.spring.dao.SellerDAO;
 @Service
 public class Services {
 
-	@Autowired
-	private MessageDAO mgsdao;
-	@Autowired
-	private SellerDAO serdao;
-	
-	@Transactional("txManager")
-	public void service() throws Exception{
-		mgsdao.insert();
-		serdao.insert();
-	}
-	
+  @Autowired
+  private MessageDAO mgsdao;
+  @Autowired
+  private SellerDAO serdao;
+
+  @Transactional("txManager")
+  public void service() throws Exception {
+    mgsdao.insert();
+    serdao.insert();
+  }
+
 }

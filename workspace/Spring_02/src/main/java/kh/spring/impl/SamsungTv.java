@@ -1,7 +1,6 @@
 package kh.spring.impl;
 
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -14,20 +13,20 @@ import kh.spring.interfaces.Tv;
 //무조건 만들어지는 건 아니고, 스프링에 알려줘야 함
 //"sam" : 아이디 부여
 @Scope("prototype")
-public class SamsungTv implements Tv{
+public class SamsungTv implements Tv {
 
-	@Autowired //DI
-	@Qualifier("sam")
-	private Speaker speaker;
-	
-	public SamsungTv() {
-		System.out.println("삼성 tv 생성됨");
-	}
-	
-	@Override
-	public void powerOn() {
-		System.out.println("삼성 Tv 켜짐");
-		speaker.volumeUp();
-	}
+  @Autowired //DI
+  @Qualifier("sam")
+  private Speaker speaker;
+
+  public SamsungTv() {
+    System.out.println("삼성 tv 생성됨");
+  }
+
+  @Override
+  public void powerOn() {
+    System.out.println("삼성 Tv 켜짐");
+    speaker.volumeUp();
+  }
 
 }

@@ -15,53 +15,56 @@ import kh.spring.dto.MembersDTO;
 @Controller
 public class HomeController {
 
-	@Autowired
-	MembersDAO mdao;
-	
-	@Autowired
-	HttpSession session;
-	
-	@RequestMapping("/")
-	public String home() {
-		return "index";
-	}
-	
-	@RequestMapping("/Join")
-	public ModelAndView join() {
-		return new ModelAndView("join");
-	}
-	@RequestMapping("/joinDone")
-	public String joinDone(MembersDTO dto) {
-		int result = mdao.insert(dto);
-		if(result>0) {
-			return "index";
-		}else {
-			return "error";
-		}
-	}
-	@ResponseBody
-	@RequestMapping("/idDupAjax")
-	public String idDupAjax(HttpServletRequest request) {
-		String result = mdao.idDup(request.getParameter("key"));
-		return result;
-	}
-	@RequestMapping("/login")
-	public ModelAndView login(HttpServletRequest request) {
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		System.out.println(id + ":" + pw);
-		boolean result = mdao.login(id, pw);
-		if(result) {
-			session.setAttribute("id", id);
-			return new ModelAndView("index");
-		}else {
-			return new ModelAndView("error");
-		}
-	}
+  @Autowired
+  MembersDAO mdao;
 
-	@RequestMapping("/logout")
-	public String logout() {
-		session.invalidate();
-		return "index";
-	}
+  @Autowired
+  HttpSession session;
+
+  @RequestMapping("/")
+  public String home() {
+    return "index";
+  }
+
+  @RequestMapping("/Join")
+  public ModelAndView join() {
+    return new ModelAndView("join");
+  }
+
+  @RequestMapping("/joinDone")
+  public String joinDone(MembersDTO dto) {
+    int result = mdao.insert(dto);
+    if (result > 0) {
+      return "index";
+    } else {
+      return "error";
+    }
+  }
+
+  @ResponseBody
+  @RequestMapping("/idDupAjax")
+  public String idDupAjax(HttpServletRequest request) {
+    String result = mdao.idDup(request.getParameter("key"));
+    return result;
+  }
+
+  @RequestMapping("/login")
+  public ModelAndView login(HttpServletRequest request) {
+    String id = request.getParameter("id");
+    String pw = request.getParameter("pw");
+    System.out.println(id + ":" + pw);
+    boolean result = mdao.login(id, pw);
+    if (result) {
+      session.setAttribute("id", id);
+      return new ModelAndView("index");
+    } else {
+      return new ModelAndView("error");
+    }
+  }
+
+  @RequestMapping("/logout")
+  public String logout() {
+    session.invalidate();
+    return "index";
+  }
 }

@@ -13,26 +13,26 @@ import org.springframework.web.servlet.mvc.Controller;
 import kh.spring.dao.MessageDAO;
 import kh.spring.dto.MessageDTO;
 
-public class OutputProcController implements Controller{
-	
-	@Autowired
-	private MessageDAO mdao;
-	
-	@Override
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+public class OutputProcController implements Controller {
 
-		
-		ModelAndView mav = new ModelAndView();
-		
-		try {
-			List<MessageDTO> lists = mdao.select();
-			mav.addObject("lists", lists);
-			mav.setViewName("WEB-INF/output/output.jsp");
-			return mav;
-		}catch(Exception e) {
-			e.printStackTrace();
-			mav.setViewName("redirect:error.do");
-			return mav;
-		}
-	}
+  @Autowired
+  private MessageDAO mdao;
+
+  @Override
+  public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+
+    ModelAndView mav = new ModelAndView();
+
+    try {
+      List<MessageDTO> lists = mdao.select();
+      mav.addObject("lists", lists);
+      mav.setViewName("WEB-INF/output/output.jsp");
+      return mav;
+    } catch (Exception e) {
+      e.printStackTrace();
+      mav.setViewName("redirect:error.do");
+      return mav;
+    }
+  }
 }
